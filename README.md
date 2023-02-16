@@ -1,1 +1,3 @@
-# PSG - Password Generator
+# PSG - Rust GUI Password Generator
+
+
