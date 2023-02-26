@@ -4,18 +4,14 @@ use std::rc::Rc;
 
 use super::*;
 use gtk::glib::{self, clone};
-// use gtk4 as gtk;
-// use glib::clone;
-// use gtk::glib;
 use gtk::{prelude::*, Button, Orientation};
 use gtk::{Application, ApplicationWindow};
 
 const APP_ID: &str = "org.dyanechi.passgen";
 
-pub fn build(config: Config) -> Application {
+pub fn build() -> Application {
     let app = Application::builder().application_id(APP_ID).build();
     app.connect_activate(build_ui);
-    // app.run();
     app
 }
 
@@ -68,7 +64,6 @@ fn build_ui(app: &Application) {
         .numeric(true)
         .digits(0)
         .adjustment(&adjustment)
-        // .margin(10)
         .build();
 
     // let box_passlen = gtk::Box::new(Orientation::Vertical, 10);
@@ -83,8 +78,6 @@ fn build_ui(app: &Application) {
 
     let button_genpass = Button::builder()
         .label("Generate Password")
-        // .margin(10)
-        // .valign(gtk::Align::Start)
         .build();
 
     let label_rand_pass = gtk::Label::builder()
@@ -107,7 +100,7 @@ fn build_ui(app: &Application) {
         let rpass = String::from(format!(
             "{}{}{}",
             pre,
-            rgen::alphanum(lsp.value() as usize),
+            util::alphanum(lsp.value() as usize),
             post,
         ));
         prefix.set(pre);
@@ -135,8 +128,6 @@ fn build_ui(app: &Application) {
 
     let window = ApplicationWindow::builder()
         .application(app)
-        // .default_width(600)
-        // .default_height(400)
         .title("PSG - Password Generator")
         .child(&gtk_box)
         .build();

@@ -3,14 +3,8 @@ use passgen::prelude::*;
 use gtk::prelude::*;
 
 fn main() {
-    // welcome();
-    let config = init();
-    let app = ui::build(config);
+    let app = ui::build();
     app.run();
-
-    // app.run();
-
-    // gen(config);
 
 }
  
